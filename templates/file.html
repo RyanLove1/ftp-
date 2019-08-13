@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FTP文件上传下载</title>
+    <link rel="stylesheet" href="/static/css/base.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/file.css" type="text/css">
+    <script src="/static/js/jquery-1.11.3.js"></script>
+    <script src="/static/js/file.js"></script>
+</head>
+<body>
+    <div id="top">
+        <div class="search-nav">
+            <a href="/index">
+                <img class="logo" src="/static/images/header/logo.png">
+            </a>
+            <div class="middle">
+                <input type="text" name="">
+                <img src="/static/images/header/search.png">
+            </div>
+            <ul>
+                <li>
+                    <a href="">
+                        <img src="/static/images/header/care.png">
+                    </a>
+                    <b>|</b>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="/static/images/header/order.png" id="i1">
+                    </a>
+                    <b>|</b>
+                </li>
+                <li>
+                    <a href="">
+                        <img src="/static/images/header/shop_car.png" id="i2">
+                    </a>
+                    <b>|</b>
+                </li>
+                <li>
+                    <a href="">帮助</a>
+                    <b>|</b>
+                </li>
+                <li>
+                    <a href="/login">{{ name }}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="nav">
+            <a href="/index">首页</a>
+            <a href="">私人订制</a>
+        </div>
+    </div>
+    <div id="main">
+        <!--购物车的商品展示-->
+        <div class="info">
+            <!--顶部的工具栏-->
+            <div class="type">
+                <div class="check">
+                    <img src="/static/images/cart/product_normal.png" class="checkAll">
+                    全选
+                </div>
+                <div class="gname">文件</div>
+                <div class="gprice">文件类型</div>
+                <div class="gcount">文件大小</div>
+                <div class="gsum">下载</div>
+                <div class="action">删除</div>
+            </div>
+            <!--商品展示-->
+            <div class="content">
+                {% for item in file_list %}
+                <!--商品记录-->
+                <div class="item">
+                    <div class="check">
+                        <img src="/static/images/cart/product_normal.png" class="checkItem">
+                    </div>
+                    <div class="gname">
+                        <img src="/static/images/log/log{{ forloop.counter }}.png">
+                        <h3 class="fileName">{{ item.file }}</h3>
+                    </div>
+                    <div class="gprice">
+                        <h3>{{ item.file_type }}</h3>
+                    </div>
+                    <div class="gcount">
+                        <!--文件大小-->
+                        <h3>{{ item.fileSize }}MB</h3>
+                    </div>
+                    <form action="/ftp" method="post" class="download">
+                        <input type="text" name="deleName" class="deleName">
+                        <input type="text" name="downName" class="downName">
+{#                        <div class="gsum">下载</div>#}
+                        <div class="gsum">
+                            <input type="submit" class="down" name="down" value="下载">
+                        </div>
+{#                    <div class="action">删除</div>#}
+                    <input type="submit" class="action" name="delete" value="删除">
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <!--购物车的底部标题-->
+        <div style="height: 80px" class="bottom-title">
+            <form action="" method="post" enctype="multipart/form-data">
+            <input type="file" class="account1" name="uploadFile" name="file">
+            <input type="submit" class="account" value="上传提交">
+            </form>
+        </div>
+        <!--购物车底部四张图片-->
+        <div class="bottom-img">
+            <img src="/static/images/footer/icon1.png">
+            <img src="/static/images/footer/icon2.png">
+            <img src="/static/images/footer/icon3.png">
+            <img src="/static/images/footer/icon4.png">
+        </div>
+    </div>
+    <div id="bottom">
+        <div>
+            <div class="blog">
+                <a href="">
+                    <img src="/static/images/header/logo.png">
+                </a>
+            </div>
+            <div class="fontImg">
+                <img src="/static/images/footer/footerFont.png">
+            </div>
+        </div>
+        <div class="qr">
+            <div>
+                <p>
+                    皮爷の商城客户端
+                </p>
+                <div>
+                    <img src="/static/images/footer/ios.png">
+                </div>
+                <div>
+                    <img src="/static/images/footer/android.png">
+                </div>
+            </div>
+            <div class="qrright">
+                <img src="/static/images/footer/erweima.png">
+            </div>
+        </div>
+        <p>
+            &copy;2018 皮爷の集团有限公司 版权所有 京ICP证xxxxxxxxxxx
+        </p>
+    </div>
+</body>
+</html>
